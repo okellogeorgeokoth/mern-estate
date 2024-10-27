@@ -48,7 +48,6 @@ export default function SignUp() {
       <input type="email" placeholder='email' className='border p-3 rounded-lg text-center' id='email'onChange={handleChange}/>
       <input type="password" placeholder='password' className='border p-3 rounded-lg text-center' id='password'onChange={handleChange}/>
       <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>{loading?'Loading...': 'SignUp'}</button>
-   
     </form>
     <div className='flex gap-2 mt-2'>
       <p>Have an account?</p>
