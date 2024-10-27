@@ -22,7 +22,7 @@ export const login =async (req, res, next) => //Login and Validate Users
         try {
             const validUser = await User.findOne({email}); //findOne is used to find email in Mongo database and await is the time used to wait for the data
             if(!validUser) return next(errorHandler(404,'User not found')); // Validate user
-            const validPassword =bcryptjs.compareSync(password, validUser.password);
+            const validPassword =bcryptjs.compareSync(password, validUser.password); //CompareSync we use to check if user is valid
             if(!validPassword) return next(errorHandler(401,'Wrong credentials!'));
             const token= jwt.sign({id:validUser._id},process.env.JWT_SECRET)
             const{password: pass, ...rest}=validUser._doc; //show password for the user on login
