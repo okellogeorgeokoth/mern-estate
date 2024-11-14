@@ -22,7 +22,7 @@ export default function logIn() {
     e.preventDefault();
     try {
       dispatch(logInStart());
-      const res = await fetch('/api/auth/signin', {
+      const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
