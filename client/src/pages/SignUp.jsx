@@ -84,7 +84,7 @@ export default function SignUp() {
             onClick={() => setShowPassword(!showPassword)} // Toggle visibility
             className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
           >
-            {showPassword ? '👁️' : '🙈'}
+            {showPassword ? '👁️' : '🔑'}
           </button>
         </div>
         <div className="relative">
@@ -101,7 +101,7 @@ export default function SignUp() {
             onClick={() => setShowConfirmPassword(!showConfirmPassword)} // Toggle visibility
             className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
           >
-            {showConfirmPassword ? '👁️' : '🙈'}
+            {showConfirmPassword ? '👁️' : '🔓'}
           </button>
         </div>
         <button
