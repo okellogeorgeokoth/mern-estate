@@ -11,6 +11,7 @@ export default function logIn() {
   const [formData, setFormData] = useState({});
   const { loading, error } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false); // For password visibility toggle
   const dispatch = useDispatch();
   const handleChange = (e) => {
     setFormData({
@@ -45,20 +46,29 @@ export default function logIn() {
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl text-center font-semibold my-7'>Log In</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-        <input
-          type='email'
+      <input
+          type="email"
           placeholder='email'
-          className='border p-3 rounded-lg'
+          className='border p-3 rounded-lg text-center'
           id='email'
           onChange={handleChange}
         />
-        <input
-          type='password'
-          placeholder='password'
-          className='border p-3 rounded-lg'
-          id='password'
-          onChange={handleChange}
-        />
+       <div className="relative">
+          <input
+            type={showPassword ? 'text' : 'password'} // Toggle type
+            placeholder='password'
+            className='border p-3 rounded-lg text-center w-full'
+            id='password'
+            onChange={handleChange}
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)} // Toggle visibility
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
+          >
+            {showPassword ? '👁️' : '🙈'} {/* Eye icon */}
+          </button>
+          </div>
 
         <button
           disabled={loading}
