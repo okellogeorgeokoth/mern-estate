@@ -6,6 +6,8 @@ export default function SignUp() {
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false); // For password visibility toggle
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // For confirm password visibility toggle
+  const [confirmPassword, setConfirmPassword] = useState(''); // Confirm password state
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -15,8 +17,17 @@ export default function SignUp() {
     });
   };
 
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent refreshing the page
+    if (formData.password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
     try {
       setLoading(true);
       const res = await fetch('/api/auth/signup', {
@@ -45,17 +56,17 @@ export default function SignUp() {
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl text-center font-semibold mb-4 uppercase'>Sign Up</h1>
-      <form onSubmit={handleSubmit} className='flex flex-col gap-4 '>
+      <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
         <input
           type="text"
-          placeholder='username'
+          placeholder='Username'
           className='border p-3 rounded-lg text-center'
           id='username'
           onChange={handleChange}
         />
         <input
           type="email"
-          placeholder='email'
+          placeholder='Email'
           className='border p-3 rounded-lg text-center'
           id='email'
           onChange={handleChange}
@@ -63,7 +74,7 @@ export default function SignUp() {
         <div className="relative">
           <input
             type={showPassword ? 'text' : 'password'} // Toggle type
-            placeholder='password'
+            placeholder='Password'
             className='border p-3 rounded-lg text-center w-full'
             id='password'
             onChange={handleChange}
@@ -73,14 +84,31 @@ export default function SignUp() {
             onClick={() => setShowPassword(!showPassword)} // Toggle visibility
             className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
           >
-            {showPassword ? '👁️' : '🙈'} {/* Eye icon */}
+            {showPassword ? '👁️' : '🙈'}
+          </button>
+        </div>
+        <div className="relative">
+          <input
+            type={showConfirmPassword ? 'text' : 'password'} // Toggle type
+            placeholder='Confirm Password'
+            className='border p-3 rounded-lg text-center w-full'
+            id='confirmPassword'
+            value={confirmPassword}
+            onChange={handleConfirmPasswordChange}
+          />
+          <button
+            type="button"
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)} // Toggle visibility
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
+          >
+            {showConfirmPassword ? '👁️' : '🙈'}
           </button>
         </div>
         <button
           disabled={loading}
           className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
         >
-          {loading ? 'Loading...' : 'SignUp'}
+          {loading ? 'Loading...' : 'Sign Up'}
         </button>
       </form>
       <div className='flex gap-2 mt-2'>
