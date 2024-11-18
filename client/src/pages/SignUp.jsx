@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import OAuth from '../components/OAuth';
+
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
@@ -62,14 +64,14 @@ export default function SignUp() {
           placeholder='Username'
           className='border p-3 rounded-lg text-center'
           id='username'
-          onChange={handleChange}
+          onChange={handleChange} required
         />
         <input
           type="email"
           placeholder='Email'
           className='border p-3 rounded-lg text-center'
           id='email'
-          onChange={handleChange}
+          onChange={handleChange} required
         />
         <div className="relative">
           <input
@@ -77,7 +79,7 @@ export default function SignUp() {
             placeholder='Password'
             className='border p-3 rounded-lg text-center w-full'
             id='password'
-            onChange={handleChange}
+            onChange={handleChange} 
           />
           <button
             type="button"
@@ -94,7 +96,7 @@ export default function SignUp() {
             className='border p-3 rounded-lg text-center w-full'
             id='confirmPassword'
             value={confirmPassword}
-            onChange={handleConfirmPasswordChange}
+            onChange={handleConfirmPasswordChange} 
           />
           <button
             type="button"
@@ -110,6 +112,7 @@ export default function SignUp() {
         >
           {loading ? 'Loading...' : 'Sign Up'}
         </button>
+        <OAuth />
       </form>
       <div className='flex gap-2 mt-2'>
         <p>Have an account?</p>

@@ -6,6 +6,7 @@ import {
   logInSuccess,
   logInFailure,
 } from '../redux/user/userSlice';
+import OAuth from '../components/OAuth';
 
 export default function logIn() {
   const [formData, setFormData] = useState({});
@@ -51,7 +52,7 @@ export default function logIn() {
           placeholder='email'
           className='border p-3 rounded-lg text-center'
           id='email'
-          onChange={handleChange}
+          onChange={handleChange} 
         />
        <div className="relative">
           <input
@@ -59,7 +60,7 @@ export default function logIn() {
             placeholder='password'
             className='border p-3 rounded-lg text-center w-full'
             id='password'
-            onChange={handleChange}
+            onChange={handleChange} 
           />
           <button
             type="button"
@@ -76,6 +77,7 @@ export default function logIn() {
         >
           {loading ? 'Loading...' : 'Sign In'}
         </button>
+        <OAuth />
       </form>
       <div className='flex gap-2 mt-5'>
         <p>Dont have an account?</p>
